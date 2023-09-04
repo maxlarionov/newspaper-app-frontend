@@ -6,20 +6,23 @@ import { store } from './app/store'
 import reportWebVitals from './reportWebVitals'
 import './index.css'
 import { Paths } from './paths'
+import { Main } from './pages/main'
+import Login from './pages/login'
+import Register from './pages/register'
 
 const router = createBrowserRouter([
   {
     path: Paths.home,
-    element: <h1>Main</h1>
+    element: <Main />
   },
   {
     path: Paths.login,
-    element: <h1>Login</h1>
+    element: <Login />
   },
-  // {
-  //   path: Paths.register,
-  //   element: <Register />
-  // },
+  {
+    path: Paths.register,
+    element: <Register />
+  },
   // {
   //   path: Paths.articleAdd,
   //   element: <AddArticle />
