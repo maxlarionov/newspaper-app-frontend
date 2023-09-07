@@ -30,7 +30,7 @@ export const PasswordInput = ({ name, placeholder, dependencies }: Props) => {
 						return Promise.reject(new Error('The passwords must match'))
 					} else {
 						if (value.length < 6) {
-							return Promise.reject(new Error('Create password with at least 6 characters'))
+							return Promise.reject(new Error('The password must consist of 6 characters'))
 						}
 
 						return Promise.resolve()

@@ -8,21 +8,21 @@ export const authApi = api.injectEndpoints({
 	endpoints: (builder) => ({
 		login: builder.mutation<ResponseLoginData, UserData>({
 			query: (userData) => ({
-				url: '/user/login',
+				url: '/users/login',
 				method: 'POST',
 				body: userData
 			})
 		}),
 		register: builder.mutation<ResponseLoginData, UserData>({
 			query: (userData) => ({
-				url: '/user/register',
+				url: '/users/register',
 				method: 'POST',
 				body: userData
 			})
 		}),
 		current: builder.query<ResponseLoginData, void>({
 			query: () => ({
-				url: '/user/current',
+				url: '/users/current',
 				method: 'GET',
 			})
 		})
