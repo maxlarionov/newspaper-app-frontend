@@ -1,5 +1,4 @@
 import { Button, Form } from 'antd'
-import React from 'react'
 import { styled } from 'styled-components'
 
 const CustomButton = styled(Button)`

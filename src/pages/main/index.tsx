@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import { Divider, Space, Typography } from 'antd'
 import { Header } from '../../components/header'
 import { Layout } from '../../components/layout'
+import { useGetAllArticlesQuery } from '../../app/services/articles'
+import { Post } from '../../components/post'
 
 const TopMenu = styled.div`
 	margin-bottom: 15px;
@@ -18,8 +20,13 @@ const TopMenuDivider = styled(Divider)`
 	background-color: #000;
 	margin-top: 15px;
 `
+const Posts = styled.div`
+	max-width: 665px;
+`
 
 export const Main = () => {
+	const { data, isLoading } = useGetAllArticlesQuery()
+
 	return (
 		<Layout>
 			<TopMenu>
@@ -39,6 +46,14 @@ export const Main = () => {
 				</MainMenu>
 				<TopMenuDivider />
 			</TopMenu>
+			<Space>
+				<Posts>
+					{data?.map(article => (
+						<Post key={article.id} title={article.title} text={article.text} picture={article.picture} time={article.time} />
+					))}
+				</Posts>
+			</Space>
+
 
 		</Layout>
 	)
