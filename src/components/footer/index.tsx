@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 const FooterContainer = styled.div`
 	width: 100%;
+	margin-top: 60px;
 `
 const FooterDivider = styled(Divider)`
 	background-color: #ACACAC;

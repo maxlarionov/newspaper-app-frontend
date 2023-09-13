@@ -5,7 +5,6 @@ import { Footer } from '../footer';
 
 const Body = styled(AntLayout.Content)`
 	max-width: 1020px;
-	min-height: 100%;
 	margin: 0 auto;
 	padding-top: 80px;
 `

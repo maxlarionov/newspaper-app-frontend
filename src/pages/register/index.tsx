@@ -31,7 +31,6 @@ type RegisterData = Omit<User, 'id'> & { confirmPassword: string }
 
 const Register = () => {
 	const navigate = useNavigate()
-	const user = useSelector(selectUser)
 	const [error, setError] = useState('')
 	const [registerUser] = useRegisterMutation()
 

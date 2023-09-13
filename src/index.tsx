@@ -14,6 +14,7 @@ import { Status } from './pages/status'
 import { Auth } from './features/auth/auth'
 import { Article } from './pages/article'
 import { EditArticle } from './pages/edit-article'
+import { Profile } from './pages/profile'
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: `${Paths.articleEdit}/:id`,
     element: <EditArticle />
+  },
+  {
+    path: `${Paths.profile}/:id`,
+    element: <Profile />
   },
 ])
 

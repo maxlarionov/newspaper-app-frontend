@@ -1,16 +1,13 @@
 import styled from 'styled-components'
 import { Divider, Space, Typography } from 'antd'
-import { Header } from '../../components/header'
 import { Layout } from '../../components/layout'
 import { useGetAllArticlesQuery } from '../../app/services/articles'
 import { Post } from '../../components/post'
+import { useGetAllTagsQuery } from '../../app/services/tags'
+import { MainMenu } from '../../components/main-menu'
 
 const TopMenu = styled.div`
 	margin-bottom: 15px;
-`
-const MainMenu = styled.div`
-	display: flex;
-	justify-content: space-between;
 `
 const MenuItem = styled(Typography)`
 	font-weight: 400;
@@ -34,21 +31,7 @@ export const Main = () => {
 	return (
 		<Layout>
 			<TopMenu>
-				<MainMenu>
-					<MenuItem>World</MenuItem>
-					<MenuItem>Business</MenuItem>
-					<MenuItem>Politics</MenuItem>
-					<MenuItem>Sports</MenuItem>
-					<MenuItem>World</MenuItem>
-					<MenuItem>Business</MenuItem>
-					<MenuItem>Politics</MenuItem>
-					<MenuItem>Sports</MenuItem>
-					<MenuItem>World</MenuItem>
-					<MenuItem>Business</MenuItem>
-					<MenuItem>Politics</MenuItem>
-					<MenuItem>Sports</MenuItem>
-				</MainMenu>
-				<TopMenuDivider />
+				<MainMenu />
 			</TopMenu>
 			<Space>
 				<Posts>

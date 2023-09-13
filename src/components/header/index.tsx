@@ -1,4 +1,4 @@
-import { Divider } from 'antd'
+import { Divider, Dropdown, MenuProps } from 'antd'
 import styled from 'styled-components'
 import menuIcon from '../../assets/icons/menu-icon.svg'
 import logo from '../../assets/images/logo.png'
@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Paths } from '../../paths'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout, selectUser } from '../../features/auth/authSlice'
+import { UserOutlined } from '@ant-design/icons'
 
 const HeaderSection = styled.header`
 	width: 100%;
@@ -45,6 +46,24 @@ export const Header = () => {
 		navigate('/')
 	}
 
+	const items: MenuProps['items'] = [
+		{
+			label: <Link to={`${Paths.profile}/${user?.id}`}>{user?.name}'s profile</Link>,
+			key: '0',
+		},
+		{
+			label: <Link to={Paths.articleAdd}>Add article</Link>,
+			key: '1',
+		},
+		{
+			type: 'divider',
+		},
+		{
+			label: <a onClick={onLogoutClick}>Log out</a>,
+			key: '2',
+		},
+	];
+
 	return (
 		<HeaderSection>
 			<HeaderInner>
@@ -56,16 +75,9 @@ export const Header = () => {
 				{
 					user ? (
 						<>
-							<Link to={Paths.articleAdd}>
-								<OutlinedButton>
-									Add
-								</OutlinedButton>
-							</Link>
-							<OutlinedButton
-								onClick={onLogoutClick}
-							>
-								Log out
-							</OutlinedButton>
+							<Dropdown menu={{ items }} trigger={['click']}>
+								<UserOutlined />
+							</Dropdown>
 						</>
 					) : (
 						<Link to={Paths.login}>

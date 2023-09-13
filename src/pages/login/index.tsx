@@ -12,7 +12,7 @@ import { useState } from 'react'
 import { ErrorMessage } from '../../components/error-message'
 
 const LoginContainer = styled.div`
-	margin: 0 auto;
+	margin: 20% auto;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
