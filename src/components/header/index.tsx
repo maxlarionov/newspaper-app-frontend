@@ -3,8 +3,10 @@ import styled from 'styled-components'
 import menuIcon from '../../assets/icons/menu-icon.svg'
 import logo from '../../assets/images/logo.png'
 import { OutlinedButton } from '../custom-outlined-button'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Paths } from '../../paths'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout, selectUser } from '../../features/auth/authSlice'
 
 const HeaderSection = styled.header`
 	width: 100%;
@@ -33,6 +35,16 @@ background-color: #ACACAC;
 `
 
 export const Header = () => {
+	const user = useSelector(selectUser)
+	const navigate = useNavigate()
+	const dispatch = useDispatch()
+
+	const onLogoutClick = () => {
+		dispatch(logout())
+		localStorage.removeItem('token')
+		navigate('/')
+	}
+
 	return (
 		<HeaderSection>
 			<HeaderInner>
@@ -40,11 +52,29 @@ export const Header = () => {
 				<Link to={Paths.home}>
 					<Logo src={logo} />
 				</Link>
-				<Link to={Paths.login}>
-					<OutlinedButton>
-						Log in
-					</OutlinedButton>
-				</Link>
+
+				{
+					user ? (
+						<>
+							<Link to={Paths.articleAdd}>
+								<OutlinedButton>
+									Add
+								</OutlinedButton>
+							</Link>
+							<OutlinedButton
+								onClick={onLogoutClick}
+							>
+								Log out
+							</OutlinedButton>
+						</>
+					) : (
+						<Link to={Paths.login}>
+							<OutlinedButton>
+								Log in
+							</OutlinedButton>
+						</Link>
+					)
+				}
 			</HeaderInner>
 			<HeaderDivider />
 		</HeaderSection>

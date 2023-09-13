@@ -9,6 +9,10 @@ import { Paths } from './paths'
 import { Main } from './pages/main'
 import Login from './pages/login'
 import Register from './pages/register'
+import { AddArticle } from './pages/add-article'
+import { Status } from './pages/status'
+import { Auth } from './features/auth/auth'
+import { Article } from './pages/article'
 
 const router = createBrowserRouter([
   {
@@ -23,18 +27,18 @@ const router = createBrowserRouter([
     path: Paths.register,
     element: <Register />
   },
-  // {
-  //   path: Paths.articleAdd,
-  //   element: <AddArticle />
-  // },
-  // {
-  //   path: `${Paths.status}/:status`,
-  //   element: <Status />
-  // },
-  // {
-  //   path: `${Paths.employee}/:id`,
-  //   element: <Employee />
-  // },
+  {
+    path: Paths.articleAdd,
+    element: <AddArticle />
+  },
+  {
+    path: `${Paths.status}/:status`,
+    element: <Status />
+  },
+  {
+    path: `${Paths.article}/:id`,
+    element: <Article />
+  },
   // {
   //   path: `${Paths.articleEdit}/:id`,
   //   element: <EditArticle />
@@ -47,7 +51,9 @@ const root = createRoot(container)
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <Auth>
+        <RouterProvider router={router} />
+      </Auth>
     </Provider>
   </React.StrictMode>
 );

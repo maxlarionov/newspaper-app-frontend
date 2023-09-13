@@ -23,6 +23,10 @@ const TopMenuDivider = styled(Divider)`
 const Posts = styled.div`
 	max-width: 665px;
 `
+const PostDivider = styled(Divider)`
+	background-color: #ACACAC;
+	margin: 15px 0px;
+`
 
 export const Main = () => {
 	const { data, isLoading } = useGetAllArticlesQuery()
@@ -49,7 +53,10 @@ export const Main = () => {
 			<Space>
 				<Posts>
 					{data?.map(article => (
-						<Post key={article.id} title={article.title} text={article.text} picture={article.picture} time={article.time} />
+						<div key={article.id}>
+							<Post id={article.id} title={article.title} text={article.text} picture={article.picture} time={article.time} />
+							<PostDivider />
+						</div>
 					))}
 				</Posts>
 			</Space>

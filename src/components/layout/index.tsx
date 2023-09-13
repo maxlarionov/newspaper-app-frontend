@@ -1,6 +1,7 @@
 import { Layout as AntLayout } from 'antd'
 import { Header } from '../header'
 import { styled } from 'styled-components';
+import { Footer } from '../footer';
 
 const Body = styled(AntLayout.Content)`
 	max-width: 1020px;
@@ -20,6 +21,7 @@ export const Layout = ({ children }: Props) => {
 			<Body>
 				{children}
 			</Body>
+			<Footer />
 		</>
 	)
 }
