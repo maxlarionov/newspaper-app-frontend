@@ -13,6 +13,7 @@ import { AddArticle } from './pages/add-article'
 import { Status } from './pages/status'
 import { Auth } from './features/auth/auth'
 import { Article } from './pages/article'
+import { EditArticle } from './pages/edit-article'
 
 const router = createBrowserRouter([
   {
@@ -39,10 +40,10 @@ const router = createBrowserRouter([
     path: `${Paths.article}/:id`,
     element: <Article />
   },
-  // {
-  //   path: `${Paths.articleEdit}/:id`,
-  //   element: <EditArticle />
-  // },
+  {
+    path: `${Paths.articleEdit}/:id`,
+    element: <EditArticle />
+  },
 ])
 
 const container = document.getElementById('root')!

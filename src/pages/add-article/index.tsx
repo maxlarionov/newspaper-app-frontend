@@ -35,7 +35,7 @@ export const AddArticle = (props: Props) => {
 			if (maybeError) {
 				setError(err.data.message)
 			} else {
-				setError('Uknown error')
+				setError('Unknown error')
 			}
 		}
 	}

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate, Navigate, useParams } from 'react-router-dom'
+import { useNavigate, Navigate, useParams, Link } from 'react-router-dom'
 import { useGetArticleQuery, useRemoveArticleMutation } from '../../app/services/articles'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../features/auth/authSlice'
@@ -7,9 +7,10 @@ import { Paths } from '../../paths'
 import { isErrorWithMessage } from '../../utils/is-error-with-message'
 import { Layout } from '../../components/layout'
 import styled from 'styled-components'
-import { CommentOutlined, ShareAltOutlined, StarOutlined } from '@ant-design/icons'
-import { Button, Space, Typography } from 'antd'
+import { CommentOutlined, DeleteOutlined, EditOutlined, ShareAltOutlined, StarOutlined } from '@ant-design/icons'
+import { Button, Modal, Space, Typography } from 'antd'
 import { OutlinedButton } from '../../components/custom-outlined-button'
+import { ErrorMessage } from '../../components/error-message'
 
 const ArticleHeader = styled.div`
 	margin: 15px 0px;
@@ -83,7 +84,7 @@ export const Article = () => {
 	const params = useParams<{ id: string }>()
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const { data, isLoading } = useGetArticleQuery(params.id || '')
-	const [removeEmployee] = useRemoveArticleMutation()
+	const [removeArticle] = useRemoveArticleMutation()
 	const user = useSelector(selectUser)
 
 	if (isLoading) {
@@ -102,11 +103,11 @@ export const Article = () => {
 		setIsModalOpen(false)
 	}
 
-	const handleDeleteUser = async () => {
+	const handleDeleteArticle = async () => {
 		hideModal()
 
 		try {
-			await removeEmployee(data.id).unwrap()
+			await removeArticle(data.id).unwrap()
 
 			navigate(`${Paths.status}/deleted`)
 		} catch (err) {
@@ -115,7 +116,7 @@ export const Article = () => {
 			if (maybeError) {
 				setError(err.data.message)
 			} else {
-				setError('Невідома помилка')
+				setError('Unknown error')
 			}
 		}
 	}
@@ -146,8 +147,27 @@ export const Article = () => {
 					<ArticleButton icon={<CommentOutlined />}>Comments</ArticleButton>
 					<ArticleButton icon={<StarOutlined />}> Save</ArticleButton>
 					<ArticleButton icon={<ShareAltOutlined />}>Share</ArticleButton>
+					{
+						user?.id === data.userId && (
+							<>
+								<Link to={`${Paths.articleEdit}/${data.id}`}>
+									<ArticleButton icon={<EditOutlined />}>Edit</ArticleButton>
+								</Link>
+								<ArticleButton icon={<DeleteOutlined />} danger onClick={showModal}>Delete</ArticleButton>
+							</>
+						)
+					}
 				</Space>
+				<ErrorMessage message={error} />
 			</ArticleBody>
+			<Modal
+				title='Confirm deleted'
+				open={isModalOpen}
+				onOk={handleDeleteArticle} onCancel={hideModal}
+				okText='Yes, delete article'
+				cancelText='No, cancel'>
+				Do you really want to delete the article?
+			</Modal>
 		</Layout >
 	)
 }
