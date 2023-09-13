@@ -60,8 +60,6 @@ export const Main = () => {
 					))}
 				</Posts>
 			</Space>
-
-
 		</Layout>
 	)
 }
