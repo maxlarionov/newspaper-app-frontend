@@ -13,9 +13,11 @@ export type Article = {
 	picture: string;
 	time: string;
 	userId: string;
+	tags: []
 }
 
 export type Tag = {
 	id: string;
 	name: string;
+	article: [];
 }

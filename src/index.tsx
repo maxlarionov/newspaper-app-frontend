@@ -15,6 +15,7 @@ import { Auth } from './features/auth/auth'
 import { Article } from './pages/article'
 import { EditArticle } from './pages/edit-article'
 import { Profile } from './pages/profile'
+import { Tag } from './pages/tag'
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
   {
     path: `${Paths.profile}/:id`,
     element: <Profile />
+  },
+  {
+    path: `${Paths.tags}/:id`,
+    element: <Tag />
   },
 ])
 

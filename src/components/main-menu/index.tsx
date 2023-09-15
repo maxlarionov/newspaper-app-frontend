@@ -2,6 +2,8 @@ import React from 'react'
 import { useGetAllTagsQuery } from '../../app/services/tags'
 import styled from 'styled-components'
 import { Typography } from 'antd'
+import { Paths } from '../../paths'
+import { Link } from 'react-router-dom'
 
 const MainMenuContainer = styled.div`
 	display: flex;
@@ -20,7 +22,9 @@ export const MainMenu = (props: Props) => {
 	return (
 		<MainMenuContainer>
 			{data?.map(tag => (
-				<MenuItem>{tag.name}</MenuItem>
+				<Link to={`${Paths.tags}/${tag.id}`}>
+					<MenuItem>{tag.name}</MenuItem>
+				</Link>
 			))}
 		</MainMenuContainer>
 	)
