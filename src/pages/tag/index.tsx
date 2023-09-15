@@ -5,11 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { Post } from '../../components/post'
 import styled from 'styled-components'
 import { Divider } from 'antd'
-
-const PostDivider = styled(Divider)`
-	background-color: #ACACAC;
-	margin: 15px 0px;
-`
+import { TopMenu } from '../../components/top-menu'
 
 type Props = {}
 
@@ -24,11 +20,9 @@ export const Tag = (props: Props) => {
 
 	return (
 		<Layout>
+			<TopMenu />
 			{data?.map(article => (
-				<div key={article.id}>
-					<Post id={article.id} title={article.title} text={article.text} picture={article.picture} time={article.time} />
-					<PostDivider />
-				</div>
+				<Post key={article.id} id={article.id} title={article.title} text={article.text} picture={article.picture} time={article.time} />
 			))}
 		</Layout>
 	)

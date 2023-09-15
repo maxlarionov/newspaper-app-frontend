@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { styled } from 'styled-components'
 import { Paths } from '../../paths'
+import { Divider } from 'antd'
 
 const PostContainer = styled.div`
 	display: flex;
@@ -47,6 +48,10 @@ const PostDate = styled.div`
 	font-weight: 400;
 	line-height: normal;
 `
+const PostDivider = styled(Divider)`
+	background-color: #ACACAC;
+	margin: 15px 0px;
+`
 
 type Props = {
 	id: string;
@@ -58,18 +63,22 @@ type Props = {
 
 export const Post = ({ id, title, text, picture, time }: Props) => {
 	return (
-		<PostContainer>
-			<Link to={`${Paths.article}/${id}`}>
-				<PostPicture style={{ backgroundImage: `url('https://loremflickr.com/321/240')` }} />
-			</Link>
-			{/* <PostPicture style={{ backgroundImage: `url(${picture})` }} /> */}
-			<PostInner>
+		<>
+			<PostContainer>
 				<Link to={`${Paths.article}/${id}`}>
-					<PostTitle>{title}</PostTitle>
+					<PostPicture style={{ backgroundImage: `url('https://loremflickr.com/321/240')` }} />
 				</Link>
-				<PostDescription>{text}</PostDescription>
-				<PostDate>{time}</PostDate>
-			</PostInner>
-		</PostContainer>
+				{/* <PostPicture style={{ backgroundImage: `url(${picture})` }} /> */}
+				<PostInner>
+					<Link to={`${Paths.article}/${id}`}>
+						<PostTitle>{title}</PostTitle>
+					</Link>
+					<PostDescription>{text}</PostDescription>
+					<PostDate>{time}</PostDate>
+				</PostInner>
+			</PostContainer>
+			<PostDivider />
+		</>
+
 	)
 }
