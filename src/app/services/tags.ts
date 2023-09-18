@@ -1,4 +1,4 @@
-import { Article, Tag } from '../../types/user-types'
+import { Tag } from '../../types/user-types'
 import { api } from './api'
 
 export const tagsApi = api.injectEndpoints({
@@ -6,12 +6,6 @@ export const tagsApi = api.injectEndpoints({
 		getAllTags: builder.query<Tag[], void>({
 			query: () => ({
 				url: '/tags',
-				method: 'GET'
-			})
-		}),
-		getArticlesByTag: builder.query<Article[], string>({
-			query: (id) => ({
-				url: `/tags/${id}`,
 				method: 'GET'
 			})
 		}),
@@ -39,6 +33,6 @@ export const tagsApi = api.injectEndpoints({
 	})
 })
 
-export const { useGetAllTagsQuery, useGetArticlesByTagQuery, useAddTagMutation, useRemoveTagMutation, useEditTagMutation } = tagsApi
+export const { useGetAllTagsQuery, useAddTagMutation, useRemoveTagMutation, useEditTagMutation } = tagsApi
 
-export const { endpoints: { getAllTags, getArticlesByTag, addTag, removeTag, editTag } } = tagsApi
+export const { endpoints: { getAllTags, addTag, removeTag, editTag } } = tagsApi

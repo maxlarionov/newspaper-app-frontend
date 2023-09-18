@@ -15,6 +15,12 @@ export const articlesApi = api.injectEndpoints({
 				method: 'GET'
 			})
 		}),
+		getArticlesByTag: builder.query<Article[], string>({
+			query: (id) => ({
+				url: `/tags/${id}`,
+				method: 'GET'
+			})
+		}),
 		addArticle: builder.mutation<Article, Article>({
 			query: (article) => ({
 				url: `/articles/add`,
@@ -39,6 +45,6 @@ export const articlesApi = api.injectEndpoints({
 	})
 })
 
-export const { useGetAllArticlesQuery, useGetArticleQuery, useAddArticleMutation, useRemoveArticleMutation, useEditArticleMutation } = articlesApi
+export const { useGetAllArticlesQuery, useGetArticleQuery, useGetArticlesByTagQuery, useAddArticleMutation, useRemoveArticleMutation, useEditArticleMutation } = articlesApi
 
-export const { endpoints: { getAllArticles, getArticle, addArticle, removeArticle, editArticle } } = articlesApi
+export const { endpoints: { getAllArticles, getArticle, getArticlesByTag, addArticle, removeArticle, editArticle } } = articlesApi

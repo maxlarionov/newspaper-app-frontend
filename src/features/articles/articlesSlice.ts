@@ -4,15 +4,15 @@ import { articlesApi } from '../../app/services/articles'
 import { RootState } from "../../app/store"
 
 interface InitialState {
-	employees: Article[] | null
+	articles: Article[] | null
 }
 
 const initialState: InitialState = {
-	employees: null
+	articles: null
 }
 
 const slice = createSlice({
-	name: 'employees',
+	name: 'articles',
 	initialState,
 	reducers: {
 		logout: () => initialState
@@ -20,11 +20,11 @@ const slice = createSlice({
 	extraReducers: (builder) => {
 		builder
 			.addMatcher(articlesApi.endpoints.getAllArticles.matchFulfilled, (state, action) => {
-				state.employees = action.payload
+				state.articles = action.payload
 			})
 	}
 })
 
 export default slice.reducer
 
-export const selectEmployees = (state: RootState) => state.articles
+export const selectArticles = (state: RootState) => state.articles

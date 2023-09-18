@@ -4,6 +4,9 @@ import { Paths } from '../../paths'
 import { Divider } from 'antd'
 
 const PostContainer = styled.div`
+	max-width: 665px;
+`
+const PostInner = styled.div`
 	display: flex;
 `
 const PostPicture = styled.div`
@@ -14,7 +17,7 @@ const PostPicture = styled.div`
 	background-position: center;
 	background-color: #636363;
 `
-const PostInner = styled.div`
+const PostText = styled.div`
 	display: flex;
 	flex-direction: column;
 	max-width: 310px;
@@ -51,6 +54,7 @@ const PostDate = styled.div`
 const PostDivider = styled(Divider)`
 	background-color: #ACACAC;
 	margin: 15px 0px;
+	width: 665px;
 `
 
 type Props = {
@@ -63,22 +67,21 @@ type Props = {
 
 export const Post = ({ id, title, text, picture, time }: Props) => {
 	return (
-		<>
-			<PostContainer>
+		<PostContainer>
+			<PostInner>
 				<Link to={`${Paths.article}/${id}`}>
 					<PostPicture style={{ backgroundImage: `url('https://loremflickr.com/321/240')` }} />
 				</Link>
 				{/* <PostPicture style={{ backgroundImage: `url(${picture})` }} /> */}
-				<PostInner>
+				<PostText>
 					<Link to={`${Paths.article}/${id}`}>
 						<PostTitle>{title}</PostTitle>
 					</Link>
 					<PostDescription>{text}</PostDescription>
 					<PostDate>{time}</PostDate>
-				</PostInner>
-			</PostContainer>
+				</PostText>
+			</PostInner>
 			<PostDivider />
-		</>
-
+		</PostContainer>
 	)
 }
