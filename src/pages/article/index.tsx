@@ -11,6 +11,7 @@ import { CommentOutlined, DeleteOutlined, EditOutlined, ShareAltOutlined, StarOu
 import { Button, Modal, Space, Typography } from 'antd'
 import { OutlinedButton } from '../../components/custom-outlined-button'
 import { ErrorMessage } from '../../components/error-message'
+import { Tag } from '../../types/user-types'
 
 const ArticleHeader = styled.div`
 	margin: 15px 0px;
@@ -66,7 +67,6 @@ const ArticleBody = styled.div`
 `
 const ArticleText = styled.div`
 	margin: 30px auto;
-	
 	color: #000;
 	font-family: Roboto;
 	font-size: 20px;
@@ -76,6 +76,32 @@ const ArticleText = styled.div`
 `
 const ArticleButton = styled(OutlinedButton)`
 	
+`
+const Tags = styled.div`
+	display: flex;
+	margin: 15px 0px;
+`
+const TagsText = styled(Typography)`
+	color: #000;
+	font-family: Roboto;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	margin-right: 10px;
+`
+const TagsItem = styled(Typography)`
+	font-family: Roboto;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	text-decoration: underline;
+
+	&:hover{
+		color: #4096ff;
+		text-decoration: none;
+	}
 `
 
 export const Article = () => {
@@ -87,11 +113,12 @@ export const Article = () => {
 	const [removeArticle] = useRemoveArticleMutation()
 	const user = useSelector(selectUser)
 
+
 	if (isLoading) {
 		return <span>Loading</span>
 	}
 
-	if (!data) {
+	if (!data?.article) {
 		return <Navigate to='/' />
 	}
 
@@ -107,7 +134,7 @@ export const Article = () => {
 		hideModal()
 
 		try {
-			await removeArticle(data.id).unwrap()
+			await removeArticle(data?.article.id).unwrap()
 
 			navigate(`${Paths.status}/deleted`)
 		} catch (err) {
@@ -124,7 +151,7 @@ export const Article = () => {
 	return (
 		<Layout>
 			<ArticleHeader>
-				<ArticleTitle>{data.title}</ArticleTitle>
+				<ArticleTitle>{data?.article.title}</ArticleTitle>
 				<ArticleHeaderInner>
 					<ArticleDescription>More than one-third of American workers are still doing their jobs at home, according to new data from a major government survey</ArticleDescription>
 					<HeaderButtons>
@@ -135,22 +162,34 @@ export const Article = () => {
 						</Space>
 					</HeaderButtons>
 				</ArticleHeaderInner>
-				<ArticleDate>{data.time}</ArticleDate>
+				<Tags>
+					<TagsText>
+						Tags:
+					</TagsText>
+					<Space>
+						{data.tags.map((tag: Tag) => (
+							<Link to={`${Paths.tags}/${tag.id}`}>
+								<TagsItem>{tag.name}</TagsItem>
+							</Link>
+						))}
+					</Space>
+				</Tags>
+				<ArticleDate>11/11/11</ArticleDate>
 			</ArticleHeader>
 
 			<ArticlePicture style={{ backgroundImage: `url('https://loremflickr.com/321/240')` }} />
 
 			<ArticleBody>
-				<ArticleText>{data.text}</ArticleText>
+				<ArticleText>{data.article.text}</ArticleText>
 
 				<Space>
 					<ArticleButton icon={<CommentOutlined />}>Comments</ArticleButton>
 					<ArticleButton icon={<StarOutlined />}> Save</ArticleButton>
 					<ArticleButton icon={<ShareAltOutlined />}>Share</ArticleButton>
 					{
-						user?.id === data.userId && (
+						user?.id === data.article.userId && (
 							<>
-								<Link to={`${Paths.articleEdit}/${data.id}`}>
+								<Link to={`${Paths.articleEdit}/${data.article.id}`}>
 									<ArticleButton icon={<EditOutlined />}>Edit</ArticleButton>
 								</Link>
 								<ArticleButton icon={<DeleteOutlined />} danger onClick={showModal}>Delete</ArticleButton>

@@ -1,5 +1,7 @@
-import { Article } from '../../types/user-types'
+import { Article, ArticleAndTags } from '../../types/user-types'
 import { api } from './api'
+
+// export type ArticleData = Omit<Article, 'tags'>
 
 export const articlesApi = api.injectEndpoints({
 	endpoints: (builder) => ({
@@ -9,7 +11,7 @@ export const articlesApi = api.injectEndpoints({
 				method: 'GET'
 			})
 		}),
-		getArticle: builder.query<Article, string>({
+		getArticle: builder.query<ArticleAndTags, string>({
 			query: (id) => ({
 				url: `/articles/${id}`,
 				method: 'GET'

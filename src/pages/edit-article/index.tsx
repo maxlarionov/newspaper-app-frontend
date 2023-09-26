@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useEditArticleMutation, useGetArticleQuery } from '../../app/services/articles'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import { Paths } from '../../paths'
 import { isErrorWithMessage } from '../../utils/is-error-with-message'
 import { Article } from '../../types/user-types'
@@ -20,10 +20,15 @@ export const EditArticle = (props: Props) => {
 		return <span>Loading</span>
 	}
 
+	if (!data?.article) {
+		return <Navigate to='/' />
+	}
+
+
 	const handleEditArticle = async (article: Article) => {
 		try {
 			const editedArticle = {
-				...data,
+				...data?.article,
 				...article
 			}
 
@@ -48,7 +53,7 @@ export const EditArticle = (props: Props) => {
 				btnText='Edit'
 				onFinish={handleEditArticle}
 				error={error}
-				article={data}
+				article={data?.article}
 			/>
 		</Layout>
 	)

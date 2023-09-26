@@ -22,7 +22,6 @@ export const ArticleShortForm = ({ onFinish, btnText, title, error, article }: P
 				<AuthInput type='text' name='title' placeholder='Title' />
 				<AuthInput type='text' name='text' placeholder='Text' />
 				<AuthInput type='text' name='picture' placeholder='Picture' />
-				<AuthInput type='text' name='time' placeholder='Date' />
 				<Space>
 					<ErrorMessage message={error} />
 					<OutlinedButton htmlType='submit'>
