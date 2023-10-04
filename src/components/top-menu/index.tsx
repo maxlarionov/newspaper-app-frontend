@@ -12,7 +12,11 @@ const TopMenuContainer = styled.div`
 `
 const MenuItem = styled(Typography)`
 	font-weight: 400;
-	font-size: 16px;	
+	font-size: 16px;
+
+	&:hover {
+		text-decoration: underline;
+	}
 `
 
 type Props = {}
@@ -24,7 +28,7 @@ export const TopMenu = (props: Props) => {
 		<>
 			<TopMenuContainer>
 				{data?.map(tag => (
-					<Link to={`${Paths.tags}/${tag.id}`}>
+					<Link to={`${Paths.tags}/${tag.id}`} key={tag.id}>
 						<MenuItem>{tag.name}</MenuItem>
 					</Link>
 				))}

@@ -12,6 +12,8 @@ import { Button, Modal, Space, Typography } from 'antd'
 import { OutlinedButton } from '../../components/custom-outlined-button'
 import { ErrorMessage } from '../../components/error-message'
 import { Tag } from '../../types/user-types'
+import Markdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 const ArticleHeader = styled.div`
 	margin: 15px 0px;
@@ -65,7 +67,7 @@ const ArticleBody = styled.div`
 	max-width: 720px;
 	margin: 0 auto;
 `
-const ArticleText = styled.div`
+const ArticleText = styled(Markdown)`
 	margin: 30px auto;
 	color: #000;
 	font-family: Roboto;
@@ -168,7 +170,7 @@ export const Article = () => {
 					</TagsText>
 					<Space>
 						{data.tags.map((tag: Tag) => (
-							<Link to={`${Paths.tags}/${tag.id}`}>
+							<Link to={`${Paths.tags}/${tag.id}`} key={tag.id}>
 								<TagsItem>{tag.name}</TagsItem>
 							</Link>
 						))}
@@ -180,7 +182,7 @@ export const Article = () => {
 			<ArticlePicture style={{ backgroundImage: `url(${data.article.picture})` }} />
 
 			<ArticleBody>
-				<ArticleText>{data.article.text}</ArticleText>
+				<ArticleText children={data.article.text} remarkPlugins={[remarkGfm]} />
 
 				<Space>
 					<ArticleButton icon={<CommentOutlined />}>Comments</ArticleButton>

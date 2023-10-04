@@ -1,6 +1,6 @@
+import { useState } from 'react'
 import { Divider, Dropdown, MenuProps } from 'antd'
 import styled from 'styled-components'
-import menuIcon from '../../assets/icons/menu-icon.svg'
 import logo from '../../assets/images/logo.png'
 import { OutlinedButton } from '../custom-outlined-button'
 import { Link, useNavigate } from 'react-router-dom'
@@ -8,6 +8,7 @@ import { Paths } from '../../paths'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout, selectUser } from '../../features/auth/authSlice'
 import { UserOutlined } from '@ant-design/icons'
+import { MenuDrawer } from '../menu-drawer'
 
 const HeaderSection = styled.header`
 	width: 100%;
@@ -24,10 +25,6 @@ const HeaderInner = styled.div`
 	margin: 0 auto;
 	justify-content: space-between;
 `
-
-const MenuButton = styled.img`
-	cursor: pointer;
-`
 const Logo = styled.img`
 	width: 200px;
 `
@@ -40,6 +37,7 @@ export const Header = () => {
 	const user = useSelector(selectUser)
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
+
 
 	const onLogoutClick = () => {
 		dispatch(logout())
@@ -68,11 +66,10 @@ export const Header = () => {
 	return (
 		<HeaderSection>
 			<HeaderInner>
-				<MenuButton src={menuIcon} />
+				<MenuDrawer />
 				<Link to={Paths.home}>
 					<Logo src={logo} />
 				</Link>
-
 				{
 					user ? (
 						<>

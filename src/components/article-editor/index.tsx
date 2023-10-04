@@ -36,12 +36,13 @@ const PreviewImage = styled.div`
 
 type Props<T> = {
 	onFinish: (values: T) => void;
-	article?: T
+	article?: T;
+	error?: string
 }
 
-export const ArticleEditor = ({ article, onFinish }: Props<ArticleData>) => {
+export const ArticleEditor = ({ article, onFinish, error }: Props<ArticleData>) => {
 	const [addImage] = useAddImageMutation()
-	const [error, setError] = useState('')
+	const [errorImage, setErrorImage] = useState('')
 	const [title, setTitle] = useState(article?.title || '')
 	const [text, setText] = useState(article?.text || '')
 	const [time, setTime] = useState(article?.time || '')
@@ -70,7 +71,7 @@ export const ArticleEditor = ({ article, onFinish }: Props<ArticleData>) => {
 		try {
 
 			if (e.target.files == null) {
-				return setError('Empty input')
+				return setErrorImage('Empty input')
 			}
 			const formData = new FormData()
 			const file = e.target.files[0]
@@ -82,9 +83,9 @@ export const ArticleEditor = ({ article, onFinish }: Props<ArticleData>) => {
 			const maybeError = isErrorWithMessage(err)
 
 			if (maybeError) {
-				setError(err.data.message)
+				setErrorImage(err.data.message)
 			} else {
-				setError('Unknown error')
+				setErrorImage('Unknown error')
 			}
 		}
 	}
@@ -113,7 +114,7 @@ export const ArticleEditor = ({ article, onFinish }: Props<ArticleData>) => {
 			/>
 			<Space>
 				<OutlinedButton onClick={() => inputFileRef.current !== null ? inputFileRef.current.click() : null}>Upload image</OutlinedButton>
-				<input ref={inputFileRef} type='file' onChange={handleChangeFile} style={{ color: 'black' }} hidden />
+				<input ref={inputFileRef} type='file' onChange={handleChangeFile} accept='.jpg, .jpeg, .png .webp' style={{ color: 'black' }} hidden />
 				<PreviewImage style={{ backgroundImage: `url(${imagePreview})` }} />
 				{imagePreview && (
 					<OutlinedButton onClick={() => setImagePreview('')} danger>Delete</OutlinedButton>
@@ -121,6 +122,7 @@ export const ArticleEditor = ({ article, onFinish }: Props<ArticleData>) => {
 			</Space>
 			<OutlinedButton type='primary' onClick={() => onFinish({ title, text, picture: imagePreview, time })} htmlType='submit'>Pablish the article</OutlinedButton>
 			<ErrorMessage message={error} />
+			<ErrorMessage message={errorImage} />
 		</ArticleForm>
 	)
 }

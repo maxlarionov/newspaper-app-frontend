@@ -41,7 +41,7 @@ export const AddArticle = (props: Props) => {
 
 	return (
 		<Layout>
-			<ArticleEditor onFinish={handleAddArticle} />
+			<ArticleEditor onFinish={handleAddArticle} error={error} />
 		</Layout>
 	)
 }

@@ -5,6 +5,8 @@ import { Paths } from '../../paths'
 import { isErrorWithMessage } from '../../utils/is-error-with-message'
 import { Layout } from '../../components/layout'
 import { ArticleEditor } from '../../components/article-editor'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../../features/auth/authSlice'
 
 type Props = {}
 
@@ -14,12 +16,13 @@ export const EditArticle = (props: Props) => {
 	const [error, setError] = useState('')
 	const { data, isLoading } = useGetArticleQuery(params.id || '')
 	const [editArticle] = useEditArticleMutation()
+	const user = useSelector(selectUser)
 
 	if (isLoading) {
 		return <span>Loading</span>
 	}
 
-	if (!data?.article) {
+	if (!data?.article || user?.id !== data.article.userId) {
 		return <Navigate to='/' />
 	}
 
@@ -47,7 +50,7 @@ export const EditArticle = (props: Props) => {
 
 	return (
 		<Layout>
-			<ArticleEditor article={data?.article} onFinish={handleEditArticle} />
+			<ArticleEditor article={data?.article} onFinish={handleEditArticle} error={error} />
 		</Layout>
 	)
 }
