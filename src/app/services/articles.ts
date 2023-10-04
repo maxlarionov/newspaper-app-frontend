@@ -1,7 +1,7 @@
 import { Article, ArticleAndTags } from '../../types/user-types'
 import { api } from './api'
 
-// export type ArticleData = Omit<Article, 'tags'>
+export type ArticleData = Omit<Article, 'id' | 'userId'>
 
 export const articlesApi = api.injectEndpoints({
 	endpoints: (builder) => ({
@@ -23,7 +23,7 @@ export const articlesApi = api.injectEndpoints({
 				method: 'GET'
 			})
 		}),
-		addArticle: builder.mutation<Article, Article>({
+		addArticle: builder.mutation<ArticleData, ArticleData>({
 			query: (article) => ({
 				url: `/articles/add`,
 				method: 'POST',

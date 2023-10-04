@@ -70,14 +70,14 @@ export const Post = ({ id, title, text, picture, time }: Props) => {
 		<PostContainer>
 			<PostInner>
 				<Link to={`${Paths.article}/${id}`}>
-					<PostPicture style={{ backgroundImage: `url('https://loremflickr.com/321/240')` }} />
+					{/* <PostPicture style={{ backgroundImage: `url('https://loremflickr.com/321/240')` }} /> */}
+					<PostPicture style={{ backgroundImage: `url(${picture})` }} />
 				</Link>
-				{/* <PostPicture style={{ backgroundImage: `url(${picture})` }} /> */}
 				<PostText>
 					<Link to={`${Paths.article}/${id}`}>
 						<PostTitle>{title}</PostTitle>
 					</Link>
-					<PostDescription>{text}</PostDescription>
+					<PostDescription>{text.substring(0, 120)}...</PostDescription>
 					<PostDate>{time}</PostDate>
 				</PostText>
 			</PostInner>

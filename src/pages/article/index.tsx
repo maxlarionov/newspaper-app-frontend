@@ -177,7 +177,7 @@ export const Article = () => {
 				<ArticleDate>11/11/11</ArticleDate>
 			</ArticleHeader>
 
-			<ArticlePicture style={{ backgroundImage: `url('https://loremflickr.com/321/240')` }} />
+			<ArticlePicture style={{ backgroundImage: `url(${data.article.picture})` }} />
 
 			<ArticleBody>
 				<ArticleText>{data.article.text}</ArticleText>

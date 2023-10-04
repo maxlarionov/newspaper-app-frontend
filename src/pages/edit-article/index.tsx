@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import { useEditArticleMutation, useGetArticleQuery } from '../../app/services/articles'
+import { ArticleData, useEditArticleMutation, useGetArticleQuery } from '../../app/services/articles'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import { Paths } from '../../paths'
 import { isErrorWithMessage } from '../../utils/is-error-with-message'
-import { Article } from '../../types/user-types'
 import { Layout } from '../../components/layout'
-import { ArticleShortForm } from '../../components/article-short-form'
+import { ArticleEditor } from '../../components/article-editor'
 
 type Props = {}
 
@@ -25,7 +24,7 @@ export const EditArticle = (props: Props) => {
 	}
 
 
-	const handleEditArticle = async (article: Article) => {
+	const handleEditArticle = async (article: ArticleData) => {
 		try {
 			const editedArticle = {
 				...data?.article,
@@ -48,13 +47,7 @@ export const EditArticle = (props: Props) => {
 
 	return (
 		<Layout>
-			<ArticleShortForm
-				title='Edit article'
-				btnText='Edit'
-				onFinish={handleEditArticle}
-				error={error}
-				article={data?.article}
-			/>
+			<ArticleEditor article={data?.article} onFinish={handleEditArticle} />
 		</Layout>
 	)
 }

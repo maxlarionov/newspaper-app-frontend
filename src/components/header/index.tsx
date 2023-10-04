@@ -13,6 +13,7 @@ const HeaderSection = styled.header`
 	width: 100%;
 	background: #FFF;
 	position: fixed;
+	z-index: 100;
 `
 
 const HeaderInner = styled.div`

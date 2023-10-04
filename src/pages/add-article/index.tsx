@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Layout } from '../../components/layout'
-import { ArticleShortForm } from '../../components/article-short-form'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../features/auth/authSlice'
-import { useAddArticleMutation } from '../../app/services/articles'
-import { Article } from '../../types/user-types'
-import { Paths } from '../../paths'
+import { ArticleEditor } from '../../components/article-editor'
 import { isErrorWithMessage } from '../../utils/is-error-with-message'
+import { ArticleData, useAddArticleMutation } from '../../app/services/articles'
+import { Paths } from '../../paths'
 
 type Props = {}
 
 
 export const AddArticle = (props: Props) => {
-	const [error, setError] = useState('')
 	const navigate = useNavigate()
-	const user = useSelector(selectUser)
+	const [error, setError] = useState('')
 	const [addArticle] = useAddArticleMutation()
+	const user = useSelector(selectUser)
 
 	useEffect(() => {
 		if (!user) {
@@ -24,9 +23,9 @@ export const AddArticle = (props: Props) => {
 		}
 	}, [user, navigate])
 
-	const handleAddArticle = async (data: Article) => {
+	const handleAddArticle = async (article: ArticleData) => {
 		try {
-			await addArticle(data).unwrap()
+			await addArticle(article).unwrap()
 
 			navigate(`${Paths.status}/created`)
 		} catch (err) {
@@ -42,12 +41,7 @@ export const AddArticle = (props: Props) => {
 
 	return (
 		<Layout>
-			<ArticleShortForm
-				title='Add article'
-				btnText='Add'
-				onFinish={handleAddArticle}
-				error={error}
-			/>
+			<ArticleEditor onFinish={handleAddArticle} />
 		</Layout>
 	)
 }
