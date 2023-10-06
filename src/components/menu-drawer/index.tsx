@@ -39,7 +39,7 @@ export const MenuDrawer = (props: Props) => {
 			>
 				{data?.map(tag => (
 					<Link to={`${Paths.tags}/${tag.id}`} key={tag.id}>
-						<MenuItem>{tag.name}</MenuItem>
+						<MenuItem onClick={() => setOpenDrawer(false)}>{tag.name}</MenuItem>
 					</Link>
 				))}
 			</Drawer>

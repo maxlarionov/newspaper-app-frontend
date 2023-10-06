@@ -1,5 +1,5 @@
 import { Spin } from "antd"
-import { useCurrentQuery } from "../../app/services/auth"
+import { useCurrentQuery } from "../../app/services/user"
 
 export const Auth = ({ children }: { children: JSX.Element }) => {
 	const { isLoading } = useCurrentQuery()

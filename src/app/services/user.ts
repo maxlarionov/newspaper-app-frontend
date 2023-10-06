@@ -25,10 +25,17 @@ export const authApi = api.injectEndpoints({
 				url: '/users/current',
 				method: 'GET',
 			})
-		})
+		}),
+		removeUser: builder.mutation<string, string>({
+			query: (id) => ({
+				url: `/users/remove/${id}`,
+				method: 'POST',
+				body: { id }
+			})
+		}),
 	})
 })
 
-export const { useLoginMutation, useRegisterMutation, useCurrentQuery } = authApi
+export const { useLoginMutation, useRegisterMutation, useCurrentQuery, useRemoveUserMutation } = authApi
 
-export const { endpoints: { login, register, current } } = authApi
+export const { endpoints: { login, register, current, removeUser } } = authApi

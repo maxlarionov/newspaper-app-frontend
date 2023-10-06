@@ -78,7 +78,7 @@ export const ArticleEditor = ({ article, onFinish, error }: Props<ArticleData>) 
 			formData.append('image', file)
 			await addImage(formData).unwrap()
 
-			setImagePreview(`https://newspaper-app-backend.onrender.com/api/uploads/${file.name}`)
+			setImagePreview(`http://localhost:9000/api/uploads/${file.name}`)
 		} catch (err) {
 			const maybeError = isErrorWithMessage(err)
 
