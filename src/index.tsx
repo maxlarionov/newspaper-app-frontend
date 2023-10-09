@@ -1,6 +1,7 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
+import { Analytics } from '@vercel/analytics/react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { store } from './app/store'
 import reportWebVitals from './reportWebVitals'
@@ -66,6 +67,7 @@ root.render(
         <RouterProvider router={router} />
       </Auth>
     </Provider>
+    <Analytics />
   </React.StrictMode>
 );
 

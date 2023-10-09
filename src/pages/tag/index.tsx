@@ -1,6 +1,6 @@
 import { Layout } from '../../components/layout'
 import { useGetArticlesByTagQuery } from '../../app/services/articles'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Post } from '../../components/post'
 import styled from 'styled-components'
 import { Typography } from 'antd'
@@ -8,6 +8,7 @@ import { TopMenu } from '../../components/top-menu'
 import { SubscribeBanner } from '../../components/subscribe-banner'
 import { useSelector } from 'react-redux'
 import { selectTags } from '../../features/tags/tagsSlice'
+import { Loader } from '../../components/loader'
 
 const Posts = styled.div`
 
@@ -29,11 +30,14 @@ const TagName = styled(Typography)`
 type Props = {}
 
 export const Tag = (props: Props) => {
-	const navigate = useNavigate()
 	const params = useParams<{ id: string }>()
 	const { data, isLoading } = useGetArticlesByTagQuery(params.id || '')
 	const tags = useSelector(selectTags)
 	const tag = tags?.find((tag) => tag.id === params.id)
+
+	if (isLoading) {
+		return <Loader />
+	}
 
 	return (
 		<Layout>

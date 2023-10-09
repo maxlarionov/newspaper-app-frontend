@@ -26,7 +26,7 @@ const PageTitle = styled(Typography)`
 
 const Login = () => {
 	const navigate = useNavigate()
-	const [loginUser, loginUserResult] = useLoginMutation()
+	const [loginUser] = useLoginMutation()
 	const [error, setError] = useState('')
 
 	const login = async (data: UserData) => {

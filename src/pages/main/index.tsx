@@ -1,12 +1,16 @@
-import styled from 'styled-components'
 import { Layout } from '../../components/layout'
 import { useGetAllArticlesQuery } from '../../app/services/articles'
 import { Post } from '../../components/post'
 import { TopMenu } from '../../components/top-menu'
 import { SubscribeBanner } from '../../components/subscribe-banner'
+import { Loader } from '../../components/loader'
 
 export const Main = () => {
 	const { data, isLoading } = useGetAllArticlesQuery()
+
+	if (isLoading) {
+		return <Loader />
+	}
 
 	return (
 		<Layout>

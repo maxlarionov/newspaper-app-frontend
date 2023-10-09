@@ -32,3 +32,10 @@ export type ArticleAndTags = {
 	};
 	tags: any;
 }
+
+export type ErrorWithMessage = {
+	status: number;
+	data: {
+		message: string;
+	}
+}

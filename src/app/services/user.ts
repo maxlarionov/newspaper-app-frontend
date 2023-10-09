@@ -1,4 +1,4 @@
-import { User } from '../../types/user-types'
+import { User } from '../../types/types'
 import { api } from './api'
 
 export type UserData = Omit<User, 'id'>

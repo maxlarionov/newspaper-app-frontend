@@ -1,4 +1,4 @@
-import { User } from '../../types/user-types'
+import { User } from '../../types/types'
 import { createSlice } from '@reduxjs/toolkit'
 import { authApi } from '../../app/services/user'
 import { RootState } from '../../app/store'

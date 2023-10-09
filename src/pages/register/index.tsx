@@ -8,7 +8,7 @@ import { OutlinedButton } from '../../components/custom-outlined-button'
 import { Link, useNavigate } from 'react-router-dom'
 import { Paths } from '../../paths'
 import { useRegisterMutation } from '../../app/services/user'
-import { User } from '../../types/user-types'
+import { User } from '../../types/types'
 import { isErrorWithMessage } from '../../utils/is-error-with-message'
 import { ErrorMessage } from '../../components/error-message'
 

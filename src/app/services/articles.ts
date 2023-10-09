@@ -1,4 +1,4 @@
-import { Article, ArticleAndTags } from '../../types/user-types'
+import { Article, ArticleAndTags } from '../../types/types'
 import { api } from './api'
 
 export type ArticleData = Omit<Article, 'id' | 'userId'>

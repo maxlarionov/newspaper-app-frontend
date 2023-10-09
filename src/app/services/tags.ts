@@ -1,4 +1,4 @@
-import { Tag } from '../../types/user-types'
+import { Tag } from '../../types/types'
 import { api } from './api'
 
 export const tagsApi = api.injectEndpoints({

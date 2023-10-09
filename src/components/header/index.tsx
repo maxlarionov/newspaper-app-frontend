@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { Divider, Dropdown, MenuProps } from 'antd'
+import { Button, Divider, Dropdown, MenuProps } from 'antd'
 import styled from 'styled-components'
 import logo from '../../assets/images/logo.png'
 import { OutlinedButton } from '../custom-outlined-button'
@@ -16,7 +15,6 @@ const HeaderSection = styled.header`
 	position: fixed;
 	z-index: 100;
 `
-
 const HeaderInner = styled.div`
 	display: flex;
 	padding: 15px 0px;
@@ -31,6 +29,10 @@ const Logo = styled.img`
 const HeaderDivider = styled(Divider)`
 background-color: #ACACAC;
 	margin: 0px;
+`
+const LogOut = styled(Button)`
+	padding: 0px;
+	line-height: normal;
 `
 
 export const Header = () => {
@@ -58,7 +60,7 @@ export const Header = () => {
 			type: 'divider',
 		},
 		{
-			label: <a onClick={onLogoutClick}>Log out</a>,
+			label: <LogOut type='link' onClick={onLogoutClick}>Log out</LogOut>,
 			key: '2',
 		},
 	];

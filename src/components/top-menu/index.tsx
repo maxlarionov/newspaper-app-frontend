@@ -1,9 +1,10 @@
 import { useGetAllTagsQuery } from '../../app/services/tags'
 import styled from 'styled-components'
-import { Divider, Typography } from 'antd'
+import { Typography } from 'antd'
 import { Paths } from '../../paths'
 import { Link } from 'react-router-dom'
 import { PageDivider } from '../page-divider'
+import { Loader } from '../loader'
 
 const TopMenuContainer = styled.div`
 	display: flex;
@@ -23,6 +24,10 @@ type Props = {}
 
 export const TopMenu = (props: Props) => {
 	const { data, isLoading } = useGetAllTagsQuery()
+
+	if (isLoading) {
+		return <Loader />
+	}
 
 	return (
 		<>

@@ -1,10 +1,11 @@
-import { Drawer, Space, Button, Typography } from 'antd'
+import { Drawer, Typography } from 'antd'
 import { useState } from 'react'
 import styled from 'styled-components'
 import menuIcon from '../../assets/icons/menu-icon.svg'
 import { useGetAllTagsQuery } from '../../app/services/tags'
 import { Link } from 'react-router-dom'
 import { Paths } from '../../paths'
+import { Loader } from '../loader'
 
 const MenuButton = styled.img`
 	cursor: pointer;
@@ -24,6 +25,10 @@ type Props = {}
 export const MenuDrawer = (props: Props) => {
 	const [openDrawer, setOpenDrawer] = useState(false)
 	const { data, isLoading } = useGetAllTagsQuery()
+
+	if (isLoading) {
+		return <Loader />
+	}
 
 	const onClose = () => {
 		setOpenDrawer(false)

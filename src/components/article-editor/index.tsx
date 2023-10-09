@@ -4,7 +4,7 @@ import "easymde/dist/easymde.min.css"
 import { Input, Space } from 'antd'
 import styled from 'styled-components'
 import { OutlinedButton } from '../custom-outlined-button'
-import { useAddImageMutation } from '../../app/services/uploads'
+import { useAddImageMutation, useRemoveImageMutation } from '../../app/services/uploads'
 import { isErrorWithMessage } from '../../utils/is-error-with-message'
 import { ArticleData } from '../../app/services/articles'
 import { ErrorMessage } from '../error-message'
@@ -42,6 +42,7 @@ type Props<T> = {
 
 export const ArticleEditor = ({ article, onFinish, error }: Props<ArticleData>) => {
 	const [addImage] = useAddImageMutation()
+	const [removeImage] = useRemoveImageMutation()
 	const [errorImage, setErrorImage] = useState('')
 	const [title, setTitle] = useState(article?.title || '')
 	const [text, setText] = useState(article?.text || '')
@@ -67,7 +68,7 @@ export const ArticleEditor = ({ article, onFinish, error }: Props<ArticleData>) 
 		}
 	}), [])
 
-	const handleChangeFile = async (e: ChangeEvent<HTMLInputElement>) => {
+	const handleChangeImage = async (e: ChangeEvent<HTMLInputElement>) => {
 		try {
 
 			if (e.target.files == null) {
@@ -78,7 +79,26 @@ export const ArticleEditor = ({ article, onFinish, error }: Props<ArticleData>) 
 			formData.append('image', file)
 			await addImage(formData).unwrap()
 
-			setImagePreview(`http://localhost:9000/api/uploads/${file.name}`)
+			setImagePreview(file.name)
+		} catch (err) {
+			const maybeError = isErrorWithMessage(err)
+
+			if (maybeError) {
+				setErrorImage(err.data.message)
+			} else {
+				setErrorImage('Unknown error')
+			}
+		}
+	}
+
+	const deleteImage = async () => {
+		try {
+			if (imagePreview !== undefined) {
+				console.log(`${imagePreview}`)
+
+				await removeImage(imagePreview)
+				setImagePreview('')
+			}
 		} catch (err) {
 			const maybeError = isErrorWithMessage(err)
 
@@ -114,10 +134,12 @@ export const ArticleEditor = ({ article, onFinish, error }: Props<ArticleData>) 
 			/>
 			<Space>
 				<OutlinedButton onClick={() => inputFileRef.current !== null ? inputFileRef.current.click() : null}>Upload image</OutlinedButton>
-				<input ref={inputFileRef} type='file' onChange={handleChangeFile} accept='.jpg, .jpeg, .png .webp' style={{ color: 'black' }} hidden />
-				<PreviewImage style={{ backgroundImage: `url(${imagePreview})` }} />
+				<input ref={inputFileRef} type='file' onChange={handleChangeImage} name='image' accept='.jpg, .jpeg, .png .webp' style={{ color: 'black' }} hidden />
 				{imagePreview && (
-					<OutlinedButton onClick={() => setImagePreview('')} danger>Delete</OutlinedButton>
+					<>
+						<PreviewImage style={{ backgroundImage: `url(https://newspaper-app-backend.onrender.com/api/uploads/${imagePreview})` }} />
+						<OutlinedButton onClick={deleteImage} danger>Delete</OutlinedButton>
+					</>
 				)}
 			</Space>
 			<OutlinedButton type='primary' onClick={() => onFinish({ title, text, picture: imagePreview, time })} htmlType='submit'>Pablish the article</OutlinedButton>

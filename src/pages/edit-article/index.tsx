@@ -7,6 +7,7 @@ import { Layout } from '../../components/layout'
 import { ArticleEditor } from '../../components/article-editor'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../features/auth/authSlice'
+import { Loader } from '../../components/loader'
 
 type Props = {}
 
@@ -19,7 +20,7 @@ export const EditArticle = (props: Props) => {
 	const user = useSelector(selectUser)
 
 	if (isLoading) {
-		return <span>Loading</span>
+		return <Loader />
 	}
 
 	if (!data?.article || user?.id !== data.article.userId) {

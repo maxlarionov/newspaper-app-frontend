@@ -1,4 +1,4 @@
-import { Article } from '../../types/user-types'
+import { Article } from '../../types/types'
 import { createSlice } from "@reduxjs/toolkit"
 import { articlesApi } from '../../app/services/articles'
 import { RootState } from "../../app/store"

@@ -1,4 +1,4 @@
-import { Tag } from '../../types/user-types'
+import { Tag } from '../../types/types'
 import { createSlice } from "@reduxjs/toolkit"
 import { tagsApi } from '../../app/services/tags'
 import { RootState } from "../../app/store"

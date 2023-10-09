@@ -8,10 +8,16 @@ export const uploadImage = api.injectEndpoints({
 				method: 'POST',
 				body: data
 			})
+		}),
+		removeImage: builder.mutation<string, string>({
+			query: (imageName) => ({
+				url: `/image/${imageName}`,
+				method: 'PUT'
+			})
 		})
 	})
 })
 
-export const { useAddImageMutation } = uploadImage
+export const { useAddImageMutation, useRemoveImageMutation } = uploadImage
 
-export const { endpoints: { addImage } } = uploadImage
+export const { endpoints: { addImage, removeImage } } = uploadImage

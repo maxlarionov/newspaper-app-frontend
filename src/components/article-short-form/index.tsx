@@ -1,12 +1,10 @@
 import React from 'react'
-import { Article } from '../../types/user-types';
+import { Article } from '../../types/types';
 import { Form, Input, Space } from 'antd';
 import { AuthInput } from '../custom-auth-input';
 import { ErrorMessage } from '../error-message';
 import { OutlinedButton } from '../custom-outlined-button';
 import Typography from 'antd/es/typography/Typography';
-
-const { TextArea } = Input
 
 type Props<T> = {
 	onFinish: (values: T) => void;

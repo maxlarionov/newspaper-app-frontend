@@ -11,7 +11,7 @@ import { CommentOutlined, DeleteOutlined, EditOutlined, ShareAltOutlined, StarOu
 import { Button, Modal, Space, Typography } from 'antd'
 import { OutlinedButton } from '../../components/custom-outlined-button'
 import { ErrorMessage } from '../../components/error-message'
-import { Tag } from '../../types/user-types'
+import { Tag } from '../../types/types'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
