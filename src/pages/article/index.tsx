@@ -14,6 +14,7 @@ import { ErrorMessage } from '../../components/error-message'
 import { Tag } from '../../types/types'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { Loader } from '../../components/loader'
 
 const ArticleHeader = styled.div`
 	margin: 15px 0px;
@@ -31,15 +32,6 @@ const ArticleHeaderInner = styled.div`
 	justify-content: space-between;
 	margin-top: 15px;
 	margin-bottom: 10px;
-`
-const ArticleDescription = styled(Typography)`
-	max-width: 480px;
-	color: #000;
-	font-family: Roboto;
-	font-size: 16px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: normal;
 `
 const HeaderButtons = styled.div`
 	
@@ -117,7 +109,7 @@ export const Article = () => {
 
 
 	if (isLoading) {
-		return <span>Loading</span>
+		return <Loader />
 	}
 
 	if (!data?.article) {
@@ -155,7 +147,18 @@ export const Article = () => {
 			<ArticleHeader>
 				<ArticleTitle>{data?.article.title}</ArticleTitle>
 				<ArticleHeaderInner>
-					<ArticleDescription>More than one-third of American workers are still doing their jobs at home, according to new data from a major government survey</ArticleDescription>
+					<Tags>
+						<TagsText>
+							Tags:
+						</TagsText>
+						<Space>
+							{data.tags.map((tag: Tag) => (
+								<Link to={`${Paths.tags}/${tag.id}`} key={tag.id}>
+									<TagsItem>{tag.name}</TagsItem>
+								</Link>
+							))}
+						</Space>
+					</Tags>
 					<HeaderButtons>
 						<Space>
 							<HeaderButton type='text' icon={<CommentOutlined />} />
@@ -164,18 +167,7 @@ export const Article = () => {
 						</Space>
 					</HeaderButtons>
 				</ArticleHeaderInner>
-				<Tags>
-					<TagsText>
-						Tags:
-					</TagsText>
-					<Space>
-						{data.tags.map((tag: Tag) => (
-							<Link to={`${Paths.tags}/${tag.id}`} key={tag.id}>
-								<TagsItem>{tag.name}</TagsItem>
-							</Link>
-						))}
-					</Space>
-				</Tags>
+
 				<ArticleDate>11/11/11</ArticleDate>
 			</ArticleHeader>
 
