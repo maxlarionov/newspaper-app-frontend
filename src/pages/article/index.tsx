@@ -179,7 +179,7 @@ export const Article = () => {
 				<ArticleDate>11/11/11</ArticleDate>
 			</ArticleHeader>
 
-			<ArticlePicture style={{ backgroundImage: `url(${data.article.picture})` }} />
+			<ArticlePicture style={{ backgroundImage: `url(https://newspaper-app-backend.onrender.com/api/uploads/${data.article.picture})` }} />
 
 			<ArticleBody>
 				<ArticleText children={data.article.text} remarkPlugins={[remarkGfm]} />

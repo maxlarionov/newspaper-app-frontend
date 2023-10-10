@@ -74,7 +74,7 @@ export const Post = ({ id, title, text, picture, time }: Props) => {
 		<PostContainer>
 			<PostInner>
 				<Link to={`${Paths.article}/${id}`}>
-					<PostPicture style={{ backgroundImage: `url(${picture})` }} />
+					<PostPicture style={{ backgroundImage: `url(https://newspaper-app-backend.onrender.com/api/uploads/${picture})` }} />
 				</Link>
 				<PostText>
 					<Link to={`${Paths.article}/${id}`}>
