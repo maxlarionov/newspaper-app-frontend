@@ -34,7 +34,7 @@ The application is designed to demonstrate programming skills and train the skil
 ![bcrypt](https://img.shields.io/badge/-bcrypt-black?style=for-the-badge&logo=letsencrypt&logoColor=yellow)
 ![multer](https://img.shields.io/badge/-multer-black?style=for-the-badge&logo=files&logoColor=blue)
 
-**Demo —> [The Newspaper Post](https://github.com/maxlarionov/newspaper-app-backend)**
+**Demo —> [The Newspaper Post](https://newspaper-app-frontend-seven.vercel.app)**
 
 **Backend —> [github.com/repo/backend](https://github.com/maxlarionov/newspaper-app-backend)**
 
