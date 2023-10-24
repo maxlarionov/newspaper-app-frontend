@@ -2,12 +2,14 @@ import { Button, Typography } from 'antd'
 import styled from 'styled-components'
 import { PageDivider } from '../page-divider'
 
-// const SubscribeContainer = styled.div`
-// 	width: 100%;
-// 	margin: 30px auto;
-// `
 const SubscribeContainer = styled.div<Props>`
-	/* margin: 150px 60px; */
+	${(props) => (props.type === 'vertical' ? 'display: flex' : 'display: block')};
+
+	@media (max-width: 1020px) {
+		display: none;
+	}
+`
+const SubscribeContent = styled.div<Props>`
 	text-align: center;
 	${(props) => (props.type === 'vertical' ? 'margin: 120px 60px' : 'margin: 30px auto')};
 `
@@ -40,9 +42,9 @@ type Props = {
 
 export const SubscribeBanner = ({ type }: Props) => {
 	return (
-		<>
+		<SubscribeContainer type={type}>
 			{type === 'vertical' && <PageDivider type={type} />}
-			<SubscribeContainer type={type}>
+			<SubscribeContent type={type}>
 				<SubscribeText>
 					Don't miss any news by subscribing to The Newspaper Post
 				</SubscribeText>
@@ -52,8 +54,8 @@ export const SubscribeBanner = ({ type }: Props) => {
 				<SubscribeBenefits>
 					Unlimited access / interactive stories / exclusive e-books
 				</SubscribeBenefits>
-			</SubscribeContainer>
+			</SubscribeContent>
 			{type === 'horizontal' && <PageDivider type={type} />}
-		</>
+		</SubscribeContainer>
 	)
 }

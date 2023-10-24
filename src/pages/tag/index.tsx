@@ -15,6 +15,10 @@ const Posts = styled.div`
 `
 const Main = styled.div`
 	display: flex;
+
+	@media (max-width: 680px) {
+		display: block;
+	}
 `
 const TagName = styled(Typography)`
 	color: #000;
@@ -25,6 +29,10 @@ const TagName = styled(Typography)`
 	line-height: normal;
 	display: block;
 	margin: 40px auto;
+
+	@media (max-width: 680px) {
+		text-align: center;
+	}
 `
 
 type Props = {}

@@ -86,9 +86,7 @@ export const Profile = (props: Props) => {
 					<ProfileData>{user?.email}</ProfileData>
 				</EmailContainer>
 			</ProfileInfo>
-			<Space>
-				<OutlinedButton onClick={() => setIsModalOpen(true)} danger>Delete user</OutlinedButton>
-			</Space>
+			<OutlinedButton onClick={() => setIsModalOpen(true)} danger>Delete user</OutlinedButton>
 			<Modal
 				title='Confirm deleted'
 				open={isModalOpen}

@@ -7,6 +7,12 @@ import { PageDivider } from '../page-divider'
 import { Loader } from '../loader'
 
 const TopMenuContainer = styled.div`
+	@media (max-width: 1040px) {
+		display: none;
+	}
+`
+
+const TopMenuContent = styled.div`
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 15px;
@@ -30,15 +36,15 @@ export const TopMenu = (props: Props) => {
 	}
 
 	return (
-		<>
-			<TopMenuContainer>
+		<TopMenuContainer>
+			<TopMenuContent>
 				{data?.map(tag => (
 					<Link to={`${Paths.tags}/${tag.id}`} key={tag.id}>
 						<MenuItem>{tag.name}</MenuItem>
 					</Link>
 				))}
-			</TopMenuContainer>
+			</TopMenuContent>
 			<PageDivider />
-		</>
+		</TopMenuContainer>
 	)
 }

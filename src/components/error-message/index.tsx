@@ -9,5 +9,5 @@ export const ErrorMessage = ({ message }: Props) => {
 		return null
 	}
 
-	return <Alert message={message} type='error' />
+	return <Alert message={message} type='error' style={{ margin: '10px 0px' }} />
 }

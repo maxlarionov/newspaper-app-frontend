@@ -2,7 +2,7 @@
 
 ![React](https://img.shields.io/badge/React-v18.2.0-61DAFB)
 ![Typescript](https://img.shields.io/badge/tipescript-4.6.0-blue)
-![Version](https://img.shields.io/badge/Version-v0.751-%23FFDA00)
+![Version](https://img.shields.io/badge/Version-v0.800-%23FFDA00)
 ![License](https://img.shields.io/badge/License-Apache%202.0-brightgreen)
 
 **[Backend Part of App](https://github.com/maxlarionov/newspaper-app-backend)**
@@ -34,7 +34,9 @@ The application is designed to demonstrate programming skills and train the skil
 ![bcrypt](https://img.shields.io/badge/-bcrypt-black?style=for-the-badge&logo=letsencrypt&logoColor=yellow)
 ![multer](https://img.shields.io/badge/-multer-black?style=for-the-badge&logo=files&logoColor=blue)
 
-**Demo —> [The Newspaper Post](https://github.com/maxlarionov/newspaper-app-backend)**
+**Demo*** **—> [The Newspaper Post](https://github.com/maxlarionov/newspaper-app-backend)**
+
+*the first load can be long
 
 **Backend —> [github.com/repo/backend](https://github.com/maxlarionov/newspaper-app-backend)**
 

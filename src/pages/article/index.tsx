@@ -26,6 +26,14 @@ const ArticleTitle = styled(Typography)`
 	font-style: normal;
 	font-weight: 700;
 	line-height: normal;
+
+	@media (max-width: 740px) {
+		font-size: 42px;
+	}
+
+	@media (max-width: 680px) {
+		font-size: 36px;
+	}
 `
 const ArticleHeaderInner = styled.div`
 	display: flex;
@@ -54,6 +62,18 @@ const ArticlePicture = styled.div`
 	background-repeat: no-repeat;
 	background-position: center;
 	background-color: #636363;
+
+	@media (max-width: 740px) {
+		height: 360px;
+	}
+
+	@media (max-width: 480px) {
+		height: 240px;
+	}
+
+	@media (max-width: 380px) {
+		height: 160px;
+	}
 `
 const ArticleBody = styled.div`
 	max-width: 720px;
@@ -67,6 +87,10 @@ const ArticleText = styled(Markdown)`
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
+
+	@media (max-width: 740px) {
+		font-size: 16px;
+	}
 `
 const ArticleButton = styled(OutlinedButton)`
 	
@@ -96,6 +120,11 @@ const TagsItem = styled(Typography)`
 		color: #4096ff;
 		text-decoration: none;
 	}
+`
+const ArticleActions = styled.div`
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
 `
 
 export const Article = () => {
@@ -167,8 +196,7 @@ export const Article = () => {
 						</Space>
 					</HeaderButtons>
 				</ArticleHeaderInner>
-
-				<ArticleDate>11/11/11</ArticleDate>
+				<ArticleDate>{data.article.time}</ArticleDate>
 			</ArticleHeader>
 
 			<ArticlePicture style={{ backgroundImage: `url(https://newspaper-app-backend.onrender.com/api/uploads/${data.article.picture})` }} />
@@ -176,7 +204,7 @@ export const Article = () => {
 			<ArticleBody>
 				<ArticleText children={data.article.text} remarkPlugins={[remarkGfm]} />
 
-				<Space>
+				<ArticleActions>
 					<ArticleButton icon={<CommentOutlined />}>Comments</ArticleButton>
 					<ArticleButton icon={<StarOutlined />}> Save</ArticleButton>
 					<ArticleButton icon={<ShareAltOutlined />}>Share</ArticleButton>
@@ -190,7 +218,7 @@ export const Article = () => {
 							</>
 						)
 					}
-				</Space>
+				</ArticleActions>
 				<ErrorMessage message={error} />
 			</ArticleBody>
 			<Modal

@@ -24,6 +24,20 @@ const TitleInput = styled(TextArea)`
 	font-style: normal;
 	font-weight: 700;
 	line-height: normal;
+
+	@media (max-width: 740px) {
+		font-size: 42px;
+	}
+
+	@media (max-width: 680px) {
+		font-size: 36px;
+	}
+`
+const ImageContainer = styled(Space)`
+	@media (max-width: 480px) {
+		display: flex;
+		flex-direction: column;
+	}
 `
 const PreviewImage = styled.div`
 	width: 216px;
@@ -132,7 +146,7 @@ export const ArticleEditor = ({ article, onFinish, error }: Props<ArticleData>) 
 				onChange={(event) => setTime(event.target.value)}
 				style={{ display: 'block', maxWidth: '300px' }}
 			/>
-			<Space>
+			<ImageContainer>
 				<OutlinedButton onClick={() => inputFileRef.current !== null ? inputFileRef.current.click() : null}>Upload image</OutlinedButton>
 				<input ref={inputFileRef} type='file' onChange={handleChangeImage} name='image' accept='.jpg, .jpeg, .png .webp' style={{ color: 'black' }} hidden />
 				{imagePreview && (
@@ -141,7 +155,7 @@ export const ArticleEditor = ({ article, onFinish, error }: Props<ArticleData>) 
 						<OutlinedButton onClick={deleteImage} danger>Delete</OutlinedButton>
 					</>
 				)}
-			</Space>
+			</ImageContainer>
 			<OutlinedButton type='primary' onClick={() => onFinish({ title, text, picture: imagePreview, time })} htmlType='submit'>Pablish the article</OutlinedButton>
 			<ErrorMessage message={error} />
 			<ErrorMessage message={errorImage} />

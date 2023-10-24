@@ -7,6 +7,15 @@ const Body = styled(AntLayout.Content)`
 	max-width: 1020px;
 	margin: 0 auto;
 	padding-top: 80px;
+
+	@media (max-width: 1020px) {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
+	@media (max-width: 680px) {
+		padding-top: 60px;
+	}
 `
 
 type Props = {

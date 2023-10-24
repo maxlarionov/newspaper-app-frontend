@@ -22,6 +22,10 @@ const HeaderInner = styled.div`
 	max-width: 1020px;
 	margin: 0 auto;
 	justify-content: space-between;
+
+	@media (max-width: 1040px) {
+		padding: 5px 10px;
+	}
 `
 const Logo = styled.img`
 	width: 200px;

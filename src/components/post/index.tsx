@@ -8,6 +8,11 @@ const PostContainer = styled.div`
 `
 const PostInner = styled.div`
 	display: flex;
+
+	@media (max-width: 680px) {
+		flex-direction: column;
+		align-items: center;
+	}
 `
 const PostPicture = styled.div`
 	width: 340px;
@@ -16,12 +21,21 @@ const PostPicture = styled.div`
 	background-repeat: no-repeat;
 	background-position: center;
 	background-color: #636363;
+
+	@media (max-width: 680px) {
+		width: 240px;
+		height: 134px;
+	}
 `
 const PostText = styled.div`
 	display: flex;
 	flex-direction: column;
 	max-width: 310px;
 	padding: 0px 15px;
+
+	@media (max-width: 680px) {
+		margin-top: 15px;
+	}
 `
 const PostTitle = styled.div`
 	color: #000;
@@ -46,6 +60,10 @@ const PostDescription = styled.div`
 	line-height: normal;
 	width: 310px;
 	flex-grow: 2;
+
+	@media (max-width: 680px) {
+		margin-bottom: 15px;
+	}
 `
 const PostDate = styled.div`
 	color: #636363;
@@ -59,6 +77,10 @@ const PostDivider = styled(Divider)`
 	background-color: #ACACAC;
 	margin: 15px 0px;
 	width: 665px;
+
+	@media (max-width: 680px) {
+		width: 100%;
+	}
 `
 
 type Props = {

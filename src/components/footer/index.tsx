@@ -15,7 +15,12 @@ const FooterMenu = styled.div`
 	justify-content: space-around;
 	margin: 0px auto;
 	padding: 40px;
-	max-width: 1020px; 
+	max-width: 1020px;
+
+	@media (max-width: 680px) {
+		flex-direction: column;
+		text-align: center;
+	}
 `
 const FooterMenuItem = styled(Typography)`
 	color: #636363;
@@ -24,6 +29,10 @@ const FooterMenuItem = styled(Typography)`
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
+
+	@media (max-width: 680px) {
+		padding: 10px;
+	}
 `
 
 type Props = {}

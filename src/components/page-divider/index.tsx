@@ -5,7 +5,7 @@ const PageDividerStyle = styled(Divider)`
 	background-color: #000;
 	margin-top: 0;
 	margin-bottom: 15px;
-	${(props) => (props.type === 'vertical' ? 'height: 425px' : '1px')};
+	${(props) => (props.type === 'vertical' ? 'height: 425px' : 'height: 1px')};
 `
 
 type Props = {
